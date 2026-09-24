@@ -208,9 +208,131 @@ a:hover { text-decoration: underline; }
 .site-footer { border-top: 1px solid var(--line); padding: 28px 0; font-size: 14px; color: var(--ink-soft); }
 .site-footer .container { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
+/* ---- CREATE POST (wide single-column form, no side image) ---- */
+.form-page-solo {
+  display: flex;
+  justify-content: center;
+  padding: 56px 20px 72px;
+}
+
+.form-card-wide {
+  width: 100%;
+  max-width: 680px;
+}
+
+.char-count {
+  font-size: 12px;
+  color: var(--ink-soft);
+  text-align: right;
+  margin-top: 6px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+/* ---- DASHBOARD ---- */
+.dash-header {
+  padding: 48px 0 32px;
+  border-bottom: 1px solid var(--line);
+}
+
+.dash-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.dash-header h1 {
+  font-family: var(--font-head);
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.dash-header p {
+  color: var(--ink-soft);
+  margin-top: 6px;
+}
+
+.dash-posts { padding: 40px 0 72px; }
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.dash-card {
+  display: flex;
+  gap: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  background: var(--paper);
+}
+
+.dash-thumb {
+  width: 96px;
+  height: 96px;
+  border-radius: var(--radius);
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--surface);
+}
+
+.dash-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.dash-card-body h3 {
+  font-family: var(--font-head);
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.dash-card-body p {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+
+.dash-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.btn-danger {
+  border-color: #f2c9c5;
+  color: #b3261e;
+}
+.btn-danger:hover {
+  background: #fdecea;
+  border-color: #b3261e;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--ink-soft);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+}
+
 @media (max-width: 900px) {
   .post-grid { grid-template-columns: repeat(2, 1fr); }
+  .dash-grid { grid-template-columns: 1fr; }
 }
+
 
 @media (max-width: 680px) {
   .nav-toggle { display: block; }
