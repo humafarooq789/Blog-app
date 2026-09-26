@@ -45,8 +45,8 @@ a:hover { text-decoration: underline; }
 }
 
 .site-header {
-  border-bottom: 1px solid var(--line);
-  background: var(--paper);
+  border-bottom: 1px solid var(--accent-d);
+  background: linear-gradient(135deg, #3fa06b, #2f6b46);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -63,24 +63,36 @@ a:hover { text-decoration: underline; }
   font-family: var(--font-head);
   font-size: 24px;
   font-weight: 600;
-  color: var(--ink);
+  color: #ffffff;
   letter-spacing: -0.01em;
 }
 .logo:hover { text-decoration: none; }
 
 .nav { display: flex; align-items: center; gap: 28px; }
-.nav a { color: var(--ink-soft); font-size: 15px; }
-.nav a:hover, .nav a.is-active { color: var(--ink); text-decoration: none; }
+.nav a { color: rgba(255, 255, 255, 0.85); font-size: 15px; }
+.nav a:hover, .nav a.is-active { color: #ffffff; text-decoration: none; }
+
+/* Register button sitting in the green bar: white pill, black text */
+.site-header .btn-primary {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
+}
+.site-header .btn-primary:hover {
+  background: #f1f4ef;
+  border-color: #f1f4ef;
+  color: #000000;
+}
 
 .nav-toggle {
   display: none;
   background: none;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: var(--radius);
   padding: 8px 10px;
   font-size: 16px;
   cursor: pointer;
-  color: var(--ink);
+  color: #ffffff;
 }
 
 .btn {
@@ -232,6 +244,7 @@ a:hover { text-decoration: underline; }
   gap: 12px;
   margin-top: 8px;
 }
+
 /* ---- DASHBOARD ---- */
 .dash-header {
   padding: 48px 0 32px;
@@ -333,7 +346,6 @@ a:hover { text-decoration: underline; }
   .dash-grid { grid-template-columns: 1fr; }
 }
 
-
 @media (max-width: 680px) {
   .nav-toggle { display: block; }
   .nav {
@@ -346,8 +358,8 @@ a:hover { text-decoration: underline; }
     align-items: flex-start;
     gap: 4px;
     padding: 16px 20px 22px;
-    background: var(--paper);
-    border-bottom: 1px solid var(--line);
+    background: #2f6b46;
+    border-bottom: 1px solid var(--accent-d);
   }
   .nav.is-open { display: flex; }
   .featured-grid { grid-template-columns: 1fr; gap: 28px; }
