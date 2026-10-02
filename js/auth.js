@@ -18,7 +18,9 @@ function valueOf(input) {
   return input.value.trim();
 }
 
+
 const loginForm = document.querySelector('#login-form');
+
 if (loginForm) {
   const email = document.querySelector('#email');
   const password = document.querySelector('#password');
@@ -26,6 +28,7 @@ if (loginForm) {
 
   loginForm.addEventListener('submit', function (event) {
     event.preventDefault();
+
     let valid = true;
     message.textContent = '';
 
@@ -46,9 +49,22 @@ if (loginForm) {
       clearError(password);
     }
 
-    if (valid) {
-      window.location.href = 'dashboard.html';
+    if (!valid) return;
+
+    const account = getRegisteredUser();
+
+    if (!account) {
+      message.textContent = 'No account found on this browser yet. Please register first.';
+      return;
     }
+
+    if (account.email !== valueOf(email) || account.password !== valueOf(password)) {
+      message.textContent = 'Incorrect email or password.';
+      return;
+    }
+
+    setCurrentUser(account);
+    window.location.href = 'dashboard.html';
   });
 
   [email, password].forEach(function (input) {
@@ -56,16 +72,43 @@ if (loginForm) {
   });
 }
 
+
+const registerFormWrap = document.querySelector('#register-form-wrap');
+const alreadyRegisteredWrap = document.querySelector('#already-registered');
 const registerForm = document.querySelector('#register-form');
+
+if (registerFormWrap && alreadyRegisteredWrap) {
+
+  if (getRegisteredUser()) {
+    registerFormWrap.style.display = 'none';
+    alreadyRegisteredWrap.style.display = 'block';
+  } else {
+    registerFormWrap.style.display = 'block';
+    alreadyRegisteredWrap.style.display = 'none';
+  }
+
+  const switchLink = document.querySelector('#switch-account-link');
+  if (switchLink) {
+    switchLink.addEventListener('click', function (event) {
+      event.preventDefault();
+      clearRegisteredUser();
+      clearCurrentUser();
+      window.location.reload();
+    });
+  }
+}
+
 if (registerForm) {
   const name = document.querySelector('#name');
   const email = document.querySelector('#email');
+  const phone = document.querySelector('#phone');
   const password = document.querySelector('#password');
   const confirm = document.querySelector('#confirm');
   const message = document.querySelector('#form-message');
 
   registerForm.addEventListener('submit', function (event) {
     event.preventDefault();
+
     let valid = true;
     message.textContent = '';
 
@@ -81,6 +124,13 @@ if (registerForm) {
       valid = false;
     } else {
       clearError(email);
+    }
+
+    if (valueOf(phone).length < 7) {
+      showError(phone, 'Enter a valid phone number.');
+      valid = false;
+    } else {
+      clearError(phone);
     }
 
     if (valueOf(password).length < 8) {
@@ -100,12 +150,22 @@ if (registerForm) {
       clearError(confirm);
     }
 
-    if (valid) {
-      window.location.href = 'dashboard.html';
-    }
+    if (!valid) return;
+
+    const newAccount = {
+      name: valueOf(name),
+      email: valueOf(email),
+      phone: valueOf(phone),
+      password: valueOf(password)
+    };
+
+    setRegisteredUser(newAccount);
+    setCurrentUser(newAccount);
+
+    window.location.href = 'dashboard.html';
   });
 
-  [name, email, password, confirm].forEach(function (input) {
+  [name, email, phone, password, confirm].forEach(function (input) {
     input.addEventListener('input', function () { clearError(input); });
   });
 }

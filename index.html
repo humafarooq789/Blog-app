@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -16,11 +16,17 @@
       <a href="index.html" class="logo">Inkwell</a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
       <nav class="nav">
-       
-        <a href="dashboard.html">Dashboard</a>
-        <a href="login.html">Log in</a>
-        <a href="register.html" class="btn btn-primary">Register</a>
-      </nav>
+  <a href="login.html" class="btn btn-primary guest-only corner-login">Log in</a>
+  <div class="profile-menu auth-only">
+    <button class="profile-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Account menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 4-6 8-6s8 2 8 6"></path></svg>
+    </button>
+    <div class="profile-dropdown">
+      <a href="profile.html">Profile</a>
+      <button id="logout-btn" type="button">Logout</button>
+    </div>
+  </div>
+</nav>
     </div>
   </header>
 
@@ -84,7 +90,7 @@
             <img src="https://picsum.photos/seed/inkwell-6/600/400" alt="Finished manuscript pages stacked neatly" class="post-thumb">
             <h3><a href="#">Finishing beats starting, every time</a></h3>
             <p>Nobody reads the twelve half-written drafts sitting in your folder.</p>
-            <p class="post-meta">Hina Javed · 22 Aug 2026</p> 
+            <p class="post-meta">Hina Javed · 22 Aug 2026</p>
           </article>
         </div>
       </div>
@@ -99,5 +105,6 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/session.js"></script>
 </body>
 </html>

@@ -52,11 +52,13 @@ a:hover { text-decoration: underline; }
   z-index: 10;
 }
 
+
 .site-header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 68px;
+  padding-right: 8px;
 }
 
 .logo {
@@ -72,13 +74,23 @@ a:hover { text-decoration: underline; }
 .nav a { color: rgba(255, 255, 255, 0.85); font-size: 15px; }
 .nav a:hover, .nav a.is-active { color: #ffffff; text-decoration: none; }
 
-/* Register button sitting in the green bar: white pill, black text */
 .site-header .btn-primary {
   background: #ffffff;
   border-color: #ffffff;
   color: #000000;
 }
 .site-header .btn-primary:hover {
+  background: #f1f4ef;
+  border-color: #f1f4ef;
+  color: #000000;
+}
+
+.site-header .btn {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
+}
+.site-header .btn:hover {
   background: #f1f4ef;
   border-color: #f1f4ef;
   color: #000000;
@@ -154,6 +166,15 @@ a:hover { text-decoration: underline; }
   grid-template-columns: repeat(3, 1fr);
   gap: 40px var(--gap);
 }
+.post-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: var(--radius);
+}
+.post-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(24, 33, 28, 0.12);
+}
+
 .post-card h3 {
   font-family: var(--font-head);
   font-size: 20px;
@@ -244,6 +265,79 @@ a:hover { text-decoration: underline; }
   gap: 12px;
   margin-top: 8px;
 }
+
+/* ---- AUTH-AWARE NAV ---- */
+.auth-only { display: none; }
+body.is-logged-in .guest-only { display: none; }
+body.is-logged-in .auth-only { display: inline-flex; }
+
+.profile-menu {
+  position: relative;
+  align-items: center;
+}
+
+.profile-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  cursor: pointer;
+}
+.profile-toggle:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.profile-dropdown {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 48px;
+  right: 0;
+  min-width: 160px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+  overflow: hidden;
+  z-index: 30;
+}
+.profile-menu.open .profile-dropdown { display: flex; }
+
+.profile-dropdown a,
+.profile-dropdown button {
+  padding: 11px 16px;
+  font-size: 14px;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+}
+.profile-dropdown a:hover,
+.profile-dropdown button:hover {
+  background: var(--surface);
+  text-decoration: none;
+}
+
+/* ---- "ALREADY REGISTERED" NOTICE (register.html) ---- */
+.already-registered h1 { margin-bottom: 8px; }
+
+/* ---- PROFILE PAGE INFO ROWS ---- */
+.profile-info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.profile-info-row:last-child { border-bottom: none; }
+.profile-info-label { color: var(--ink-soft); font-size: 14px; }
+.profile-info-value { font-weight: 500; }
 
 /* ---- DASHBOARD ---- */
 .dash-header {
